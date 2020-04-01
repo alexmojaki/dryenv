@@ -5,7 +5,7 @@ from pydantic import BaseSettings
 
 try:
     from pydantic.main import ModelMetaclass
-except ImportError:
+except ImportError:  # pragma: no cover
     ModelMetaclass = type(BaseSettings)
 
 __version__ = '0.0.1'
