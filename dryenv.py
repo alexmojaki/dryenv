@@ -14,6 +14,9 @@ __version_info__ = namedtuple(
 )(*map(int, __version__.split('.')))
 
 
+__all__ = ["DryEnvMeta", "populate_globals"]
+
+
 class DryEnvMeta(ModelMetaclass):
     def __new__(mcs, name, bases, namespace):
         Config = namespace.setdefault("Config", type("Config", (), {}))
