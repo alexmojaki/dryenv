@@ -28,6 +28,12 @@ class CUSTOM_PREFIX(DryEnv):
     P1 = 9
 
 
+class stuff(DryEnv):
+    foo = 1
+    bar = 2
+    defaulted = 0
+
+
 populate_globals()
 
 
@@ -35,16 +41,16 @@ def test_stuff():
     assert type(STUFF) is type(STUFF())
     assert isinstance(STUFF, DryEnv)
 
-    for stuff in [STUFF, STUFF()]:
-        assert stuff.FOO == 3
-        assert stuff.BAR == 4
-        assert stuff.DEFAULTED == 0
-        assert stuff.dict() == {
+    for stuff_obj in [STUFF, STUFF()]:
+        assert stuff_obj.FOO == 3
+        assert stuff_obj.BAR == 4
+        assert stuff_obj.DEFAULTED == 0
+        assert stuff_obj.dict() == {
             "FOO": 3,
             "BAR": 4,
             "DEFAULTED": 0,
         }
-        assert stuff.prefixed_dict() == {
+        assert stuff_obj.prefixed_dict() == {
             "STUFF_FOO": 3,
             "STUFF_BAR": 4,
             "STUFF_DEFAULTED": 0,
@@ -69,3 +75,19 @@ def test_populate_globals():
     assert STUFF_DEFAULTED == 0
     assert TOP is False
     assert PRE_P1 == 100
+
+
+def test_case_insensitivity():
+    assert stuff.foo == 3
+    assert stuff.bar == 4
+    assert stuff.defaulted == 0
+    assert stuff().dict() == {
+        "foo": 3,
+        "bar": 4,
+        "defaulted": 0,
+    }
+    assert stuff().prefixed_dict() == {
+        "stuff_foo": 3,
+        "stuff_bar": 4,
+        "stuff_defaulted": 0,
+    }
