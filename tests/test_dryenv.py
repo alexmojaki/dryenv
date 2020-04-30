@@ -40,6 +40,8 @@ populate_globals()
 def test_stuff():
     assert type(STUFF) is type(STUFF())
     assert isinstance(STUFF, DryEnv)
+    assert STUFF.Config.env_prefix == "STUFF_"
+    assert STUFF.Config.auto_init
 
     for stuff_obj in [STUFF, STUFF()]:
         assert stuff_obj.FOO == 3
@@ -58,11 +60,13 @@ def test_stuff():
 
 
 def test_root():
+    assert Root.Config.env_prefix == ""
     assert Root.TOP is False
     assert Root().dict() == Root().prefixed_dict() == {"TOP": False}
 
 
 def test_custom_prefix():
+    assert Root.Config.env_prefix == "PRE_"
     assert CUSTOM_PREFIX.P1 == 100
     assert CUSTOM_PREFIX().dict() == {"P1": 100}
     assert CUSTOM_PREFIX().prefixed_dict() == {"PRE_P1": 100}
