@@ -1,6 +1,6 @@
 from collections import namedtuple
 from inspect import currentframe
-from typing import Dict, Any
+from typing import Any, Dict
 
 from pydantic import BaseSettings
 
@@ -9,10 +9,10 @@ try:
 except ImportError:  # pragma: no cover
     ModelMetaclass = type(BaseSettings)
 
-__version__ = '0.1.0'
-__version_info__ = namedtuple(
-    'VersionInfo', ('major', 'minor', 'micro')
-)(*map(int, __version__.split('.')))
+__version__ = "0.1.0"
+__version_info__ = namedtuple("VersionInfo", ("major", "minor", "micro"))(
+    *map(int, __version__.split("."))
+)
 
 __all__ = ["DryEnvMeta", "populate_globals"]
 
@@ -108,8 +108,7 @@ class DryEnv(BaseSettings, metaclass=DryEnvMeta):
             assert DATABASE.prefixed_dict() == {"DATABASE_HOST": "localhost", "DATABASE_USERNAME": "admin"}
         """
         return {
-            self.Config.env_prefix + k: v
-            for k, v in self.dict(*args, **kwargs).items()
+            self.Config.env_prefix + k: v for k, v in self.dict(*args, **kwargs).items()
         }
 
     def __call__(self, *args, **kwargs) -> "DryEnv":
