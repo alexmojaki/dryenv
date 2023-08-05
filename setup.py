@@ -17,7 +17,7 @@ def file_to_string(*path):
 # it because it imports dependencies which may not be installed yet,
 # so we extract it manually
 contents = file_to_string(package + ".py")
-__version__ = re.search(r"__version__ = '([.\d]+)'", contents).group(1)
+__version__ = re.search(r'__version__ = "([.\d]+)"', contents).group(1)
 
 install_requires = [
     "pydantic<2.0",

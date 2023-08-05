@@ -9,7 +9,7 @@ try:
 except ImportError:  # pragma: no cover
     ModelMetaclass = type(BaseSettings)
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __version_info__ = namedtuple("VersionInfo", ("major", "minor", "micro"))(
     *map(int, __version__.split("."))
 )
