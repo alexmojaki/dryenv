@@ -6,11 +6,11 @@ Simple configuration with environment variables and pydantic, without repeating 
 
     pip install dryenv
 
-  * [Basic usage](#basic-usage)
-  * [Based on pydantic.](#based-on-pydantic)
-  * [Configuring DryEnv](#configuring-dryenv)
-  * [Additional features](#additional-features)
-  * [Usage with Django and PyCharm](#usage-with-django-and-pycharm)
+- [Basic usage](#basic-usage)
+- [Based on pydantic.](#based-on-pydantic)
+- [Configuring DryEnv](#configuring-dryenv)
+- [Additional features](#additional-features)
+- [Usage with Django and PyCharm](#usage-with-django-and-pycharm)
 
 ## Basic usage
 
@@ -95,7 +95,7 @@ connection = connect(**DATABASE.dict())
 
 1. Setting `env_prefix` based on the class name, unless the class name is `Root` (case insensitive) in which case the prefix is empty.
 2. Instantiating the class to trigger the environment lookups.
- 
+
 For example, this:
 
 ```python
